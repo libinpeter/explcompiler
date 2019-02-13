@@ -1,0 +1,60 @@
+0
+2056
+0
+0
+0
+0
+0
+0
+MOV R6,3
+MOV R1,4096                    
+MOV R2,4097
+MOV R3,4098
+MOV SP, 4098
+MOV R4, "Read"                   // reading from console using library
+PUSH R4
+MOV R4, -1
+PUSH R4
+PUSH R3
+PUSH R1
+PUSH R4
+INT 6
+POP R4
+POP R0
+POP R3
+POP R0
+POP R0
+DCR R6
+DCR R3
+JNZ R6,2066
+MOV R3,[4098]
+MOV R2,[4097]
+MOV R1,[4096]   
+MOV R4,R1
+GT R4,R2
+JNZ R4,2116
+MOV R4,R2
+GT R4,R3
+JNZ R4,2126
+MOV R4,R1
+GT R4,R3
+JZ R4,2130
+MOV R0,R1                // largest num stored in R0
+JMP 2132
+MOV R0,R2
+JMP 2132
+MOV R0,R3
+MOV R2, "write"                // printing largest
+PUSH R2
+MOV R2, -2
+PUSH R2
+PUSH R0
+PUSH R2
+PUSH R2
+INT 7
+POP R0
+POP R1
+POP R1
+POP R1
+POP R1
+INT 10
